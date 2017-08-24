@@ -1,0 +1,7 @@
+{
+    "cors": true,
+    "server": {
+        "baseDir": "./local-schemas"
+    },
+    "port": 3001
+}

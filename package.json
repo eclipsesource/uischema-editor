@@ -1,0 +1,39 @@
+{
+  "name": "@eclipsesource/uischema-editor",
+  "private": false,
+  "version": "0.0.1",
+  "description": "Editor for UI Schemata",
+  "repository": "https://github.com/eclipsesource/uischema-editor",
+  "bugs": "https://github.com/eclipsesource/uischema-editor/issues",
+  "license": "MIT",
+  "dependencies": {
+    "@eclipsesource/jsoneditor": "file:../../jsoneditor",
+    "jsonforms": "^2.0.0-alpha.10"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.2.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-sourcemaps": "^2.6.0",
+    "jquery": "^3.2.1",
+    "materialize-css": "^0.100.1",
+    "ncp": "^2.0.0",
+    "npm-run-all": "^4.0.2",
+    "source-map-loader": "^0.1.6",
+    "tslint": "^5.1.0",
+    "typescript": "^2.4.2",
+    "webpack": "^2.7.0",
+    "webpack-dev-server": "^2.6.1"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack --config webpack/webpack.dev.js && webpack-dev-server --config webpack/webpack.dev.js --env=dev --inline",
+    "demo": "npm run dev",
+    "build": "npm run tsc && npm run bundle",
+    "build_che": "npm run bundle && gulp che",
+    "bundle": "webpack --config webpack/webpack.build.js --env=production --display-error-details",
+    "tsc": "tsc"
+  },
+  "main": "dist/ts-build/uischema-editor.js"
+}

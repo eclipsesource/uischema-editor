@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "dist/ts-build",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude":[
+    "node_modules"
+  ],
+  "files": [
+    "./src/uischema-editor.ts"
+  ]
+}
