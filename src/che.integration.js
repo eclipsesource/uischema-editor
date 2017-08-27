@@ -7,5 +7,5 @@ function updateUiSchemaEditorData(element, data) {
   var uiSchemaEditor = document.createElement('uischema-editor');
   uiSchemaEditor.data = data;
 
-  element.appendChild(ecoreEditor);
+  element.appendChild(uiSchemaEditor);
 }
