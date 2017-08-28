@@ -18,7 +18,7 @@ folder
 ```
 1. Install dependecies for JsonForms and JsonEditor by executing `npm install` in their directories.
 
-1. Build JsonForms by executing `npm run build` in the jsonforms directory.
+1. Build JsonForms by executing `npm run build` in the jsonforms directory. In case the build fails due to TSLint errors, open the file webpack/webpack.build.js and search for `failOnHint` and set its value from `true` to `false`.
 
 1. Install the result in JsonEditor by executing `npm install ../jsonforms` in the jsoneditor directory.
 
