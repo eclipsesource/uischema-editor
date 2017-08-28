@@ -33,6 +33,7 @@ Run the UI Schema Editor with `npm run dev`.
 
 You can now use the editor at http://localhost:8080/
 
+Note: You might not see the root element even if it's there. Just move the mouse to the top of the lower left box beneath the UI Schema Editor headline.
 
 ## Exclaimer
 This demo is currently under development and might not work properly, yet.
