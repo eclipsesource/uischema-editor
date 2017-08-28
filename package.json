@@ -7,8 +7,8 @@
   "bugs": "https://github.com/eclipsesource/uischema-editor/issues",
   "license": "MIT",
   "dependencies": {
-    "@eclipsesource/jsoneditor": "file:../../jsoneditor",
-    "jsonforms": "^2.0.0-alpha.10"
+    "@eclipsesource/jsoneditor": "file:../jsoneditor",
+    "jsonforms": "file:../jsonforms"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.2",
