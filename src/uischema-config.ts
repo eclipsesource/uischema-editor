@@ -1,6 +1,11 @@
 export const labelMapping = {
-  '#control': 'label',
-  '#layout': 'label'
+  // '#control': 'label',
+  '#control': 'type',
+  '#rootlayout': 'type',
+  '#layout': 'type',
+  '#categorization': 'label',
+  '#category': 'label',
+  '#masterdetaillayout': 'type'
 };
 
 export const imageMapping = {
@@ -8,5 +13,14 @@ export const imageMapping = {
 };
 
 export const modelMapping = {
-  // TODO define modelMapping
+  'attribute': 'type',
+  'mapping': {
+    'Control': '#control',
+    'MasterDetailLayout': '#masterdetaillayout',
+    'Category': '#category',
+    'Categorization': '#categorization',
+    'VerticalLayout': '#layout',
+    'HorizontalLayout': '#layout',
+    'GroupLayout': '#layout'
+  }
 };

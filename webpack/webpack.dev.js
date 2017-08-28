@@ -34,7 +34,8 @@ module.exports = {
           {from: './node_modules/materialize-css/dist/js/materialize.js', to: 'materialize.js' },
           {from: './node_modules/materialize-css/dist/fonts', to: 'fonts'},
           {from: './node_modules/jquery/dist/jquery.js', to: 'jquery.js' },
-          {from: './node_modules/@eclipsesource/jsoneditor/dist/assets/jsoneditor.css', to: 'jsoneditor.css' }
+          {from: './node_modules/@eclipsesource/jsoneditor/dist/jsoneditor.css', to: 'jsoneditor.css' },
+          {from: './standalone/uischema.css', to: 'uischema.css' }
         ])
     ],
     module: {

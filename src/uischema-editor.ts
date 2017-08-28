@@ -4,7 +4,13 @@ import { JsonEditor } from '@eclipsesource/jsoneditor';
 import '@eclipsesource/jsoneditor';
 import './materialized.tree.renderer';
 import { imageMapping, labelMapping, modelMapping } from './uischema-config';
-import { uiSchemaEasy } from '../local-schemas/uiSchema-easy';
+import { uiSchema } from '../local-schemas/ui-schema-metaschema';
+import {
+  categoryView,
+  categorizationView,
+  controlView,
+  layoutView
+} from './uischemata';
 
 export class UiSchemaEditor extends HTMLElement {
   private dataObject: Object;
@@ -37,9 +43,14 @@ export class UiSchemaEditor extends HTMLElement {
     // }
     //
     // return undefined;
-    return uiSchemaEasy;
+    return uiSchema;
   }
   private registerUiSchemas(): void {
+    register(categoryView, '#category');
+    register(categorizationView, '#categorization');
+    register(controlView, '#control');
+    register(layoutView, '#layout');
+    register(layoutView, '#rootlayout');
     // const callback = uischemas => {
     //   register(uischemas.attribute_view, 'http://www.eclipse.org/emf/2002/Ecore#//EAttribute');
     //   register(uischemas.eclass_view, 'http://www.eclipse.org/emf/2002/Ecore#//EClass');
@@ -60,11 +71,11 @@ export class UiSchemaEditor extends HTMLElement {
   }
 
   private configureModelMapping() {
-    // this.editor.setModelMapping(modelMapping);
+    this.editor.setModelMapping(modelMapping);
   }
 
   private configureSchema() {
-    this.editor.schema = uiSchemaEasy;
+    this.editor.schema = uiSchema;
   }
 
   private render() {
@@ -90,11 +101,11 @@ export class UiSchemaEditor extends HTMLElement {
 }
 
 // method to register ui schemas
-const register = (uischema, uri) => {
+const register = (uischema, id) => {
   JsonForms.uischemaRegistry.register(uischema, (schema, data) =>
-    data.eClass === uri || schema.properties !== undefined
-    && schema.properties.eClass !== undefined
-    && schema.properties.eClass.default === uri ? 2 : -1);
+    data.eClass === id || schema.properties !== undefined
+    && schema.id !== undefined
+    && schema.id === id ? 2 : -1);
 };
 
 if (!customElements.get('uischema-editor')) {

@@ -19,12 +19,12 @@ class MaterializedTreeMasterDetailRenderer extends TreeMasterDetailRenderer {
     // init selects and remove description option when the reference is already set
     setTimeout(() => {
         const selectList = $('select');
-        for (const item of selectList) {
-          const select = item as HTMLSelectElement;
-          if (select.selectedIndex > 0) {
-            select.options[0].remove();
-          }
-        }
+        // for (const item of selectList) {
+        //   const select = item as HTMLSelectElement;
+        //   if (select.selectedIndex > 0) {
+        //     select.options[0].remove();
+        //   }
+        // }
         selectList.material_select();
       },       100);
   }
