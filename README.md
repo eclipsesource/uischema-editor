@@ -1,12 +1,38 @@
 # UiSchema Editor
 
-An editor demo to create and modify Ui Schemata for JsonForms.
+An editor to create and modify Ui Schemata for JsonForms.
 The editor is based on [JsonEditor](https://github.com/eclipsesource/jsoneditor).
 
-Before installing, open the package.json and  adapt the path for the dependency `@eclipsesource/jsoneditor` to the location on your file system.
+## Installation
+To install the UI Schema Editor you need to checkout the following repositories:
+- [JsonEditor](https://github.com/eclipsesource/jsoneditor) on branch master
+- [JsonForms](https://github.com/eclipsesource/jsonforms/tree/jsonforms2) on branch jsonforms2
 
-Install dependencies with `npm run install`.
+The directories should be located next to the UI schema editor,
+e.g.
+```
+folder
+  |- jsoneditor
+  |- jsonforms
+  |- uischema-editor
+```
+1. Install dependecies for JsonForms and JsonEditor by executing `npm install` in their directories.
 
-Compile and run standalone editor with `npm run dev`.
+1. Build JsonForms by executing `npm run build` in the jsonforms directory.
 
-Note: This demo is currently under development and might not work, yet.
+1. Install the result in JsonEditor by executing `npm install ../jsonforms` in the jsoneditor directory.
+
+1. Build JsonEditor with `npm run build`
+
+1. Got to the uischema-editor directory and execute `npm install`
+
+1. Optional: Run `npm run build` to build a node module containing the ui schema editor element
+
+## Run
+Run the UI Schema Editor with `npm run dev`.
+
+You can now use the editor at http://localhost:8080/
+
+
+## Exclaimer
+This demo is currently under development and might not work properly, yet.
