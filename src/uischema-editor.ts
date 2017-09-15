@@ -11,6 +11,7 @@ import {
   controlView,
   layoutView
 } from './uischemata';
+import './object.renderer.ts';
 
 export class UiSchemaEditor extends HTMLElement {
   private dataObject: Object;
