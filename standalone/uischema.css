@@ -1,3 +1,43 @@
 body {
   font-family: 'Roboto', sans-serif;
 }
+
+.jsf-additionalproperties-master .selected {
+  font-weight: bold;
+}
+
+.jsf-additionalproperties-master > li {
+  cursor: pointer;
+}
+
+.icon {
+  background-repeat: no-repeat;
+}
+
+.icon.categorization {
+  background-image: url('../Categorization.gif');
+}
+
+.icon.category {
+  background-image: url('../Category.gif');
+}
+
+.icon.control {
+  background-image: url('../Control.gif');
+}
+
+.icon.masterdetaillayout {
+  background-image: url('../TreeMasterDetail.gif');
+}
+
+.icon.layout {
+  background-image: url('../Layout.gif');
+}
+
+.icon.view {
+  background-image: url('../View.gif');
+}
+
+.icon.group {
+  background-image: url('../Group.gif');
+}

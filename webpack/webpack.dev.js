@@ -22,7 +22,7 @@ module.exports = {
         extensions: [".ts", ".js"]
     },
     devServer: {
-        contentBase: ['./standalone', './src'],
+        contentBase: ['./standalone', './src', './icons'],
         port: 8080
     },
     plugins: [

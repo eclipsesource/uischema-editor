@@ -1,15 +1,22 @@
 export const labelMapping = {
-  // '#control': 'label',
-  '#control': 'type',
+  '#control': 'label',
+  // '#control': 'type',
   '#rootlayout': 'type',
   '#layout': 'type',
   '#categorization': 'label',
   '#category': 'label',
-  '#masterdetaillayout': 'type'
+  '#masterdetaillayout': 'type',
+  '#group': 'label'
 };
 
 export const imageMapping = {
-  // TODO define image css classes
+  '#control': 'control',
+  '#group': 'group',
+  '#masterdetaillayout': 'masterdetaillayout',
+  '#layout': 'layout',
+  '#rootlayout': 'view',
+  '#categorization': 'categorization',
+  '#category': 'category'
 };
 
 export const modelMapping = {
@@ -21,6 +28,6 @@ export const modelMapping = {
     'Categorization': '#categorization',
     'VerticalLayout': '#layout',
     'HorizontalLayout': '#layout',
-    'GroupLayout': '#layout'
+    'Group': '#group'
   }
 };

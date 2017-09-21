@@ -5,17 +5,6 @@ export const layoutView = {
     {
       'type': 'Control',
       'scope': { '$ref': '#/properties/type' }
-    },
-    {
-      'type': 'Control',
-      'scope': { '$ref': '#/properties/label' },
-      'rule': {
-        'effect': 'SHOW',
-        'condition': {
-          'scope': { '$ref': '#/properties/type' },
-          'expectedValue': 'Group'
-        }
-      }
     }
     // {
     //   'type': 'Group',
@@ -62,6 +51,10 @@ export const controlView = {
     {
       'type': 'Control',
       'scope': { '$ref': '#/properties/readOnly' }
+    },
+    {
+      'type': 'Control',
+      'scope': { '$ref': '#/properties/options' }
     }
     // {
     //   'type': 'Group',
@@ -160,5 +153,24 @@ export const categorizationView = {
     //     }
     //   ]
     // }
+  ]
+};
+
+export const treeMasterDetailView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Control',
+      'scope': { '$ref': '#/properties/label' }
+    },
+    {
+      'type': 'Control',
+      'scope': { '$ref': '#/properties/type' }
+    },
+    {
+      'type': 'Control',
+      'label': 'Scope',
+      'scope': { '$ref': '#/properties/scope/properties/$ref' }
+    }
   ]
 };

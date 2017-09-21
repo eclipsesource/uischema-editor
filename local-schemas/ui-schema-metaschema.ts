@@ -27,16 +27,16 @@ export const uiSchemaEasy = {
       'properties': {
         'type': {
           'type': 'string',
-          'enum': ['VerticalLayout', 'HorizontalLayout', 'Group']
+          'enum': ['VerticalLayout', 'HorizontalLayout']
         },
-        'label': { 'type': 'string' },
         // 'elements': { '$ref': '#/definitions/layout-elements' }
         'elements': {
           'type': 'array',
           'items': {
             'anyOf': [
               {'$ref': '#/definitions/control'},
-              {'$ref': '#/definitions/layout'}
+              {'$ref': '#/definitions/layout'},
+              {'$ref': '#/definitions/group'}
             ]
           }
         }
@@ -68,7 +68,8 @@ export const uiSchemaEasy = {
       'items': {
         'anyOf': [
           {'$ref': '#/definitions/control'},
-          {'$ref': '#/definitions/layout'}
+          {'$ref': '#/definitions/layout'},
+          {'$ref': '#/definitions/group'}
         ]
       }
     }
@@ -80,14 +81,15 @@ export const uiSchemaEasy = {
 export const uiSchema = {
   'definitions': {
     'elements': {
-      'id': '#elements',
+      // 'id': '#elements',
       'type': 'array',
       'items': {
         'anyOf': [
+          { '$ref': '#/definitions/categorization' },
           { '$ref': '#/definitions/control' },
+          { '$ref': '#/definitions/group' },
           { '$ref': '#/definitions/layout' },
-          { '$ref': '#/definitions/masterdetaillayout' },
-          { '$ref': '#/definitions/categorization' }
+          { '$ref': '#/definitions/masterdetaillayout' }
         ]
       }
     },
@@ -175,7 +177,10 @@ export const uiSchema = {
             '$ref': { 'type': 'string' }
           }
         },
-        'readOnly': { 'type': 'boolean' }
+        'readOnly': { 'type': 'boolean' },
+        'options': {
+          'additionalProperties': { 'type': 'string' }
+        }
       },
       'required': ['scope', 'type']
     },
@@ -184,22 +189,49 @@ export const uiSchema = {
       'type': 'object',
       'properties': {
         'label': { 'type': 'string' },
-        'type': { 'type': 'string', 'enum': ['VerticalLayout', 'HorizontalLayout', 'Group'] },
+        'type': { 'type': 'string', 'enum': ['VerticalLayout', 'HorizontalLayout'] },
         'rule': { '$ref': '#/definitions/rule' },
         'elements': {
           'type': 'array',
           'items': {
             'anyOf': [
-              { '$ref': '#/definitions/layout' },
-              { '$ref': '#/definitions/control' },
               { '$ref': '#/definitions/categorization' },
+              { '$ref': '#/definitions/control' },
+              { '$ref': '#/definitions/group' },
+              { '$ref': '#/definitions/layout' },
               { '$ref': '#/definitions/masterdetaillayout' }
             ]
           }
         }
-        // elements: { '$ref': '#/definitions/elements'}
+        // 'elements': { '$ref': '#/definitions/elements'}
       },
       'required': ['elements', 'type']
+    },
+    'group': {
+      'id': '#group',
+      'type': 'object',
+      'properties': {
+        'type': {
+          'type': 'string',
+          'enum': ['Group']
+        },
+        'label': { 'type': 'string' },
+        // 'elements': { '$ref': '#/definitions/layout-elements' }
+        'elements': {
+          'type': 'array',
+          'items': {
+            'anyOf': [
+              { '$ref': '#/definitions/categorization' },
+              { '$ref': '#/definitions/control' },
+              { '$ref': '#/definitions/group' },
+              { '$ref': '#/definitions/layout' },
+              { '$ref': '#/definitions/masterdetaillayout' }
+            ]
+          }
+        }
+      },
+      'required': ['type', 'elements'],
+      'additionalProperties': false
     },
     'array-control': {
       'id': '#arraycontrol',
@@ -291,7 +323,6 @@ export const uiSchema = {
     }
   },
   // ref is illegal for root element
-  // '$ref': '#/definitions/layout'
   'id': '#rootlayout',
   'type': 'object',
   'properties': {

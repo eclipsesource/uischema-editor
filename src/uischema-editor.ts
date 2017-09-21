@@ -9,9 +9,10 @@ import {
   categoryView,
   categorizationView,
   controlView,
-  layoutView
+  layoutView,
+  treeMasterDetailView
 } from './uischemata';
-import './object.renderer.ts';
+import './object.renderer';
 
 export class UiSchemaEditor extends HTMLElement {
   private dataObject: Object;
@@ -52,6 +53,7 @@ export class UiSchemaEditor extends HTMLElement {
     register(controlView, '#control');
     register(layoutView, '#layout');
     register(layoutView, '#rootlayout');
+    register(treeMasterDetailView, '#masterdetaillayout');
     // const callback = uischemas => {
     //   register(uischemas.attribute_view, 'http://www.eclipse.org/emf/2002/Ecore#//EAttribute');
     //   register(uischemas.eclass_view, 'http://www.eclipse.org/emf/2002/Ecore#//EClass');
@@ -89,9 +91,9 @@ export class UiSchemaEditor extends HTMLElement {
     }
 
     // TODO comment in when configured
-    // this.configureImageMapping();
+    this.configureImageMapping();
     this.configureLabelMapping();
-    // this.configureModelMapping();
+    this.configureModelMapping();
     this.registerUiSchemas();
     this.configureSchema();
 
