@@ -129,7 +129,7 @@ export const uiSchema = {
             'rel': 'full',
             'href': 'rs://dataSchema/{$ref}',
             'targetSchema': {
-              '$ref': 'http://json-schema.org/draft-04/schema#'
+              'resource': 'json-schema-04'
             }
           }]
         },
@@ -189,7 +189,7 @@ export const uiSchema = {
             'rel': 'full',
             'href': 'rs://dataSchema/{$ref}',
             'targetSchema': {
-              '$ref': 'http://json-schema.org/draft-04/schema#'
+              'resource': 'json-schema-04'
             }
           }]
         },
@@ -343,7 +343,7 @@ export const uiSchema = {
             'rel': 'full',
             'href': 'rs://dataSchema/{$ref}',
             'targetSchema': {
-              '$ref': 'http://json-schema.org/draft-04/schema#'
+              'resource': 'json-schema-04'
             }
           }]
         }
