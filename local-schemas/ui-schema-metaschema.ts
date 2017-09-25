@@ -124,7 +124,14 @@ export const uiSchema = {
           'type': 'object',
           'properties': {
             '$ref': { 'type': 'string' }
-          }
+          },
+          'links': [{
+            'rel': 'full',
+            'href': 'rs://dataSchema/{$ref}',
+            'targetSchema': {
+              '$ref': 'http://json-schema.org/draft-04/schema#'
+            }
+          }]
         },
         'expectedValue': { 'type': ['string', 'integer', 'number', 'object', 'array'] }
       },
@@ -177,7 +184,14 @@ export const uiSchema = {
           'properties': {
             '$ref': { 'type': 'string' }
           },
-          'required': ['$ref']
+          'required': ['$ref'],
+          'links': [{
+            'rel': 'full',
+            'href': 'rs://dataSchema/{$ref}',
+            'targetSchema': {
+              '$ref': 'http://json-schema.org/draft-04/schema#'
+            }
+          }]
         },
         'readOnly': { 'type': 'boolean' },
         'options': {
@@ -323,7 +337,15 @@ export const uiSchema = {
           'type': 'object',
           'properties': {
             '$ref': { 'type': 'string' }
-          }
+          },
+          'required': ['$ref'],
+          'links': [{
+            'rel': 'full',
+            'href': 'rs://dataSchema/{$ref}',
+            'targetSchema': {
+              '$ref': 'http://json-schema.org/draft-04/schema#'
+            }
+          }]
         }
       },
       'required': ['scope', 'type']
@@ -334,7 +356,11 @@ export const uiSchema = {
   'type': 'object',
   'properties': {
     'label': { 'type': 'string' },
-    'type': { 'type': 'string', 'enum': ['VerticalLayout', 'HorizontalLayout', 'Group'] },
+    'type': {
+      'type': 'string',
+      'enum': ['VerticalLayout', 'HorizontalLayout', 'Group'],
+      'default': 'VerticalLayout'
+    },
     'rule': { '$ref': '#/definitions/rule' },
     'elements': {
       '$ref': '#/definitions/elements'
