@@ -14,7 +14,8 @@ export const uiSchemaEasy = {
           'type': 'object',
           'properties': {
             '$ref': { 'type': 'string' }
-          }
+          },
+          'required': ['$ref']
         },
         'readOnly': { 'type': 'boolean' }
       },
@@ -175,7 +176,8 @@ export const uiSchema = {
           'type': 'object',
           'properties': {
             '$ref': { 'type': 'string' }
-          }
+          },
+          'required': ['$ref']
         },
         'readOnly': { 'type': 'boolean' },
         'options': {
@@ -189,7 +191,11 @@ export const uiSchema = {
       'type': 'object',
       'properties': {
         'label': { 'type': 'string' },
-        'type': { 'type': 'string', 'enum': ['VerticalLayout', 'HorizontalLayout'] },
+        'type': {
+          'type': 'string',
+          'enum': ['VerticalLayout', 'HorizontalLayout'],
+          'default': 'VerticalLayout'
+        },
         'rule': { '$ref': '#/definitions/rule' },
         'elements': {
           'type': 'array',
@@ -213,7 +219,8 @@ export const uiSchema = {
       'properties': {
         'type': {
           'type': 'string',
-          'enum': ['Group']
+          'enum': ['Group'],
+          'default': 'Group'
         },
         'label': { 'type': 'string' },
         // 'elements': { '$ref': '#/definitions/layout-elements' }

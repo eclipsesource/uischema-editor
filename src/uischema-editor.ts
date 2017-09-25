@@ -9,6 +9,7 @@ import {
   categoryView,
   categorizationView,
   controlView,
+  groupView,
   layoutView,
   treeMasterDetailView
 } from './uischemata';
@@ -51,6 +52,7 @@ export class UiSchemaEditor extends HTMLElement {
     register(categoryView, '#category');
     register(categorizationView, '#categorization');
     register(controlView, '#control');
+    register(groupView, '#group');
     register(layoutView, '#layout');
     register(layoutView, '#rootlayout');
     register(treeMasterDetailView, '#masterdetaillayout');

@@ -174,3 +174,17 @@ export const treeMasterDetailView = {
     }
   ]
 };
+
+export const groupView = {
+  'type': 'VerticalLayout',
+  'elements': [
+    {
+      'type': 'Control',
+      'scope': { '$ref': '#/properties/label' }
+    },
+    {
+      'type': 'Control',
+      'scope': { '$ref': '#/properties/type' }
+    }
+  ]
+};
