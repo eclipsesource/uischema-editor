@@ -1,7 +1,5 @@
 import '../src/materialized.tree.renderer';
 import {
-  configureDownloadButton,
-  configureExportButton,
   configureUploadButton,
   createExportDataDialog,
   JsonEditor
@@ -11,6 +9,10 @@ import '../src/uischema-editor';
 import { UiSchemaEditor } from '../src/uischema-editor';
 import { JsonSchema } from 'jsonforms';
 import { applyMaterialStyle } from './material.styling';
+import {
+  configureUISchemaDownloadButton,
+  configureUISchemaExportButton
+} from '../src/toolbar';
 
 window.onload = () => {
   const editor = document.createElement('uischema-editor') as UiSchemaEditor;
@@ -21,7 +23,7 @@ window.onload = () => {
 
   // configure button that opens the export dialog
   const exportButton = document.getElementById('export-data-button') as HTMLButtonElement;
-  configureExportButton(editor, exportButton, exportDialog);
+  configureUISchemaExportButton(editor, exportButton, exportDialog);
 
   // configure button to upload data to the editor
   const uploadButton = document.getElementById('upload-data-button') as HTMLButtonElement;
@@ -29,7 +31,7 @@ window.onload = () => {
 
   // configure button to download model data.
   const downloadButton = document.getElementById('download-data-button') as HTMLButtonElement;
-  configureDownloadButton(editor, downloadButton);
+  configureUISchemaDownloadButton(editor, downloadButton);
 
   // initialize editor with empty root object
   editor.data = {};

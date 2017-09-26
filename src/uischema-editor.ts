@@ -14,6 +14,10 @@ import {
   treeMasterDetailView
 } from './uischemata';
 import './object.renderer';
+import './link-path.control';
+import './extended-enum-control';
+import { schemaFourMod } from './schema-modified';
+import { referencedSchema } from './referencedDataSchema';
 
 export class UiSchemaEditor extends HTMLElement {
   private dataObject: Object;
@@ -92,14 +96,14 @@ export class UiSchemaEditor extends HTMLElement {
       this.editor = document.createElement('json-editor') as JsonEditor;
     }
 
-    // TODO comment in when configured
+    // TODO use configuration object
     this.configureImageMapping();
     this.configureLabelMapping();
     this.configureModelMapping();
     this.registerUiSchemas();
     this.configureSchema();
-
-    // JsonForms.config.setIdentifyingProp('_id');
+    this.editor.registerResource('json-schema-04', schemaFourMod);
+    this.editor.registerResource('dataSchema', referencedSchema);
     this.editor.data = this.dataObject;
     this.appendChild(this.editor);
   }

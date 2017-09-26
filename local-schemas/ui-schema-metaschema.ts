@@ -1,84 +1,4 @@
 // tslint:disable:max-line-length
-export const uiSchemaEasy = {
-  'definitions': {
-    'control': {
-      'id': '#control',
-      'type': 'object',
-      'properties': {
-        'type': {
-          'type': 'string',
-          'enum': ['Control']
-        },
-        'label': { 'type': 'string' },
-        'scope': {
-          'type': 'object',
-          'properties': {
-            '$ref': { 'type': 'string' }
-          },
-          'required': ['$ref']
-        },
-        'readOnly': { 'type': 'boolean' }
-      },
-      'required': ['type', 'scope'],
-      'additionalProperties': false
-    },
-    'layout': {
-      'id': '#layout',
-      'type': 'object',
-      'properties': {
-        'type': {
-          'type': 'string',
-          'enum': ['VerticalLayout', 'HorizontalLayout']
-        },
-        // 'elements': { '$ref': '#/definitions/layout-elements' }
-        'elements': {
-          'type': 'array',
-          'items': {
-            'anyOf': [
-              {'$ref': '#/definitions/control'},
-              {'$ref': '#/definitions/layout'},
-              {'$ref': '#/definitions/group'}
-            ]
-          }
-        }
-      },
-      'required': ['type', 'elements'],
-      'additionalProperties': false
-    }
-    // 'layout-elements': {
-    //   'id': '#layout-elements',
-    //   'type': 'array',
-    //   'items': {
-    //     'anyOf': [
-    //       {'$ref': '#/definitions/control'},
-    //       {'$ref': '#/definitions/layout'}
-    //     ]
-    //   }
-    // }
-  },
-  'id': '#rootlayout',
-  'type': 'object',
-  'properties': {
-    'type': {
-      'type': 'string',
-      'enum': ['VerticalLayout', 'HorizontalLayout', 'Group']
-    },
-    'label': { 'type': 'string' },
-    'elements': {
-      'type': 'array',
-      'items': {
-        'anyOf': [
-          {'$ref': '#/definitions/control'},
-          {'$ref': '#/definitions/layout'},
-          {'$ref': '#/definitions/group'}
-        ]
-      }
-    }
-  },
-  'required': ['type', 'elements'],
-  'additionalProperties': false
-};
-
 export const uiSchema = {
   'definitions': {
     'elements': {
@@ -119,7 +39,6 @@ export const uiSchema = {
       'id': '#condition',
       'type': 'object',
       'properties': {
-        'type': { 'type': 'string' },
         'scope': {
           'type': 'object',
           'properties': {
@@ -134,8 +53,7 @@ export const uiSchema = {
           }]
         },
         'expectedValue': { 'type': ['string', 'integer', 'number', 'object', 'array'] }
-      },
-      'required': ['type', 'scope', 'expectedValue']
+      }
     },
     'rule-effect': {
       'type': 'string',
@@ -147,8 +65,7 @@ export const uiSchema = {
       'properties': {
         'effect': { '$ref': '#/definitions/rule-effect' },
         'condition': { '$ref': '#/definitions/condition' }
-      },
-      'required': ['effect', 'condition']
+      }
     },
     'uischema': {
       'id': '#uischema',
@@ -237,6 +154,7 @@ export const uiSchema = {
           'default': 'Group'
         },
         'label': { 'type': 'string' },
+        'rule': { '$ref': '#/definitions/rule' },
         // 'elements': { '$ref': '#/definitions/layout-elements' }
         'elements': {
           'type': 'array',
@@ -358,8 +276,7 @@ export const uiSchema = {
     'label': { 'type': 'string' },
     'type': {
       'type': 'string',
-      'enum': ['VerticalLayout', 'HorizontalLayout', 'Group'],
-      'default': 'VerticalLayout'
+      'enum': ['VerticalLayout', 'HorizontalLayout', 'Group']
     },
     'rule': { '$ref': '#/definitions/rule' },
     'elements': {
