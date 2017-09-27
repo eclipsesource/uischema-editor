@@ -17,7 +17,7 @@ import './object.renderer';
 import './link-path.control';
 import './extended-enum-control';
 import { schemaFourMod } from './schema-modified';
-import { referencedSchema } from './referencedDataSchema';
+import { evaluationSchema } from './referencedDataSchema';
 
 export class UiSchemaEditor extends HTMLElement {
   private dataObject: Object;
@@ -103,7 +103,7 @@ export class UiSchemaEditor extends HTMLElement {
     this.registerUiSchemas();
     this.configureSchema();
     this.editor.registerResource('json-schema-04', schemaFourMod);
-    this.editor.registerResource('dataSchema', referencedSchema);
+    this.editor.registerResource('dataSchema', evaluationSchema);
     this.editor.data = this.dataObject;
     this.appendChild(this.editor);
   }

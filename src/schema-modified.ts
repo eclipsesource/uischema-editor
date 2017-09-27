@@ -137,6 +137,7 @@ export const schemaFourMod = {
                 }
             ]
         },
+        'format': { 'type': 'string' },
         'allOf': { '$ref': '#/definitions/schemaArray' },
         'anyOf': { '$ref': '#/definitions/schemaArray' },
         'oneOf': { '$ref': '#/definitions/schemaArray' },
