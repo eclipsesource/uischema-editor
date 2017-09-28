@@ -1,23 +1,11 @@
-/* tslint:disable:no-invalid-this */
 import { JsonForms, JsonSchema } from 'jsonforms';
 import { JsonEditor } from '@eclipsesource/jsoneditor';
 import '@eclipsesource/jsoneditor';
 import './materialized.tree.renderer';
-import { imageMapping, labelMapping, modelMapping } from './uischema-config';
-import { uiSchema } from '../local-schemas/ui-schema-metaschema';
-import {
-  categoryView,
-  categorizationView,
-  controlView,
-  groupView,
-  layoutView,
-  treeMasterDetailView
-} from './uischemata';
+import { uiSchemaEditorConfig } from './uischema-config';
 import './object.renderer';
-import './link-path.control';
-import './extended-enum-control';
-import { schemaFourMod } from './schema-modified';
 import { evaluationSchema } from './referencedDataSchema';
+import { uiSchema } from './ui-schema-metaschema';
 
 export class UiSchemaEditor extends HTMLElement {
   private dataObject: Object;
@@ -36,86 +24,55 @@ export class UiSchemaEditor extends HTMLElement {
   }
 
   set data(data: Object) {
-    this.dataObject = data;
-    this.render();
+    if (this.editor !== undefined && this.editor !== null) {
+      this.editor.data = data;
+
+      return;
+    }
+    console.warn('Could not set data of ui schema editor because it has not been rendered, yet.');
   }
 
   get data(): Object {
-    return this.dataObject;
+    if (this.editor !== undefined && this.editor !== null) {
+      return this.editor.data;
+    }
+
+    return null;
   }
 
   get schema(): JsonSchema {
-    // if (this.editor !== undefined && this.editor !== null) {
-    //   return this.editor.schema;
-    // }
-    //
-    // return undefined;
     return uiSchema;
   }
-  private registerUiSchemas(): void {
-    register(categoryView, '#category');
-    register(categorizationView, '#categorization');
-    register(controlView, '#control');
-    register(groupView, '#group');
-    register(layoutView, '#layout');
-    register(layoutView, '#rootlayout');
-    register(treeMasterDetailView, '#masterdetaillayout');
-    // const callback = uischemas => {
-    //   register(uischemas.attribute_view, 'http://www.eclipse.org/emf/2002/Ecore#//EAttribute');
-    //   register(uischemas.eclass_view, 'http://www.eclipse.org/emf/2002/Ecore#//EClass');
-    //   register(uischemas.datatype_view, 'http://www.eclipse.org/emf/2002/Ecore#//EDataType');
-    //   register(uischemas.enum_view, 'http://www.eclipse.org/emf/2002/Ecore#//EEnum');
-    //   register(uischemas.epackage_view, 'http://www.eclipse.org/emf/2002/Ecore#//EPackage');
-    //   register(uischemas.reference_view, 'http://www.eclipse.org/emf/2002/Ecore#//EReference');
-    // };
-    // this.loadFromRest('ecoreUiSchema', callback);
+
+  set referencedDataSchema(dataSchema: JsonSchema) {
+    if (this.editor !== undefined && this.editor !== null) {
+      this.editor.registerResource('dataSchema', dataSchema);
+
+      return;
+    }
+    console.warn('Could not set the reference data schema of the ui schema editor.');
   }
 
-  private configureLabelMapping() {
-    this.editor.setLabelMapping(labelMapping);
-  }
-
-  private configureImageMapping() {
-    this.editor.setImageMapping(imageMapping);
-  }
-
-  private configureModelMapping() {
-    this.editor.setModelMapping(modelMapping);
-  }
-
-  private configureSchema() {
-    this.editor.schema = uiSchema;
+  get referencedDataSchema() {
+    if (this.editor !== undefined && this.editor !== null) {
+      return JsonForms.resources.getResource('dataSchema');
+    }
+    console.warn('Could not set the reference data schema of the ui schema editor.');
   }
 
   private render() {
-    if (!this.connected || this.dataObject === undefined
-        || this.dataObject === null) {
+    if (!this.connected) {
       return;
     }
     if (this.editor === undefined) {
       this.editor = document.createElement('json-editor') as JsonEditor;
+      this.editor.configure(uiSchemaEditorConfig);
     }
 
-    // TODO use configuration object
-    this.configureImageMapping();
-    this.configureLabelMapping();
-    this.configureModelMapping();
-    this.registerUiSchemas();
-    this.configureSchema();
-    this.editor.registerResource('json-schema-04', schemaFourMod);
-    this.editor.registerResource('dataSchema', evaluationSchema);
-    this.editor.data = this.dataObject;
     this.appendChild(this.editor);
+    // this.editor.registerResource('dataSchema', evaluationSchema);
   }
 }
-
-// method to register ui schemas
-const register = (uischema, id) => {
-  JsonForms.uischemaRegistry.register(uischema, (schema, data) =>
-    data.eClass === id || schema.properties !== undefined
-    && schema.id !== undefined
-    && schema.id === id ? 2 : -1);
-};
 
 if (!customElements.get('uischema-editor')) {
   customElements.define('uischema-editor', UiSchemaEditor);

@@ -13,6 +13,7 @@ import {
   configureUISchemaDownloadButton,
   configureUISchemaExportButton
 } from '../src/toolbar';
+import { evaluationSchema } from '../src/referencedDataSchema';
 
 window.onload = () => {
   const editor = document.createElement('uischema-editor') as UiSchemaEditor;
@@ -33,9 +34,8 @@ window.onload = () => {
   const downloadButton = document.getElementById('download-data-button') as HTMLButtonElement;
   configureUISchemaDownloadButton(editor, downloadButton);
 
-  // initialize editor with empty root object
-  editor.data = {};
   document.getElementById('editor').appendChild(editor);
 
+  editor.referencedDataSchema = evaluationSchema;
   applyMaterialStyle();
 };

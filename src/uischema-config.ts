@@ -1,4 +1,17 @@
-export const labelMapping = {
+import { EditorConfiguration } from '@eclipsesource/jsoneditor';
+import { uiSchema } from './ui-schema-metaschema';
+import { schemaFourMod } from './schema-modified';
+import { evaluationSchema } from './referencedDataSchema';
+import {
+  categoryView,
+  categorizationView,
+  controlView,
+  groupView,
+  layoutView,
+  treeMasterDetailView
+} from './uischemata';
+
+const labelMapping = {
   '#control': 'label',
   // '#control': 'type',
   '#rootlayout': 'type',
@@ -9,7 +22,7 @@ export const labelMapping = {
   '#group': 'label'
 };
 
-export const imageMapping = {
+const imageMapping = {
   '#control': 'control',
   '#group': 'group',
   '#masterdetaillayout': 'masterdetaillayout',
@@ -19,7 +32,7 @@ export const imageMapping = {
   '#category': 'category'
 };
 
-export const modelMapping = {
+const modelMapping = {
   'attribute': 'type',
   'mapping': {
     'Control': '#control',
@@ -29,5 +42,24 @@ export const modelMapping = {
     'VerticalLayout': '#layout',
     'HorizontalLayout': '#layout',
     'Group': '#group'
+  }
+};
+
+export const uiSchemaEditorConfig: EditorConfiguration = {
+  dataSchema: uiSchema,
+  labelMapping: labelMapping,
+  imageMapping: imageMapping,
+  modelMapping: modelMapping,
+  detailSchemata: {
+    '#category': categoryView,
+    '#categorization': categorizationView,
+    '#control': controlView,
+    '#group': groupView,
+    '#layout': layoutView,
+    '#rootlayout': layoutView,
+    '#masterdetaillayout': treeMasterDetailView
+  },
+  resources: {
+    'json-schema-04': schemaFourMod
   }
 };
